@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <meta name="author" content="ISUX"/>
+    <meta name="format-detection" content="telephone=no"/>
+    <meta name="viewport" content="width=device-width, user-scalable=no"/>
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <meta name="apple-mobile-web-app-status-bar-style" content="black"/>
+    <title>FrozenUI组件库</title>
+    <!--统计代码 -->
+    <script type="text/javascript" src="http://tajs.qq.com/stats?sId=37342703" charset="UTF-8"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+
+    <!-- <link rel="stylesheet" type="text/css" href="http://i.gtimg.cn/vipstyle/frozenui/1.2.0/css/frozen.css?_bid=306"/> -->
+    <link rel="stylesheet" type="text/css" href="css/frozen.css">
+    <style>
+        .title { padding-left: 15px; line-height: 48px; font-size: 20px; color:
+                #00A5E3; }
+        .title2{
+            padding: 0 15px;
+            line-height: 66px;
+            font-size: 23px;
+        }
+        body>a{display: none;}
+        .ui-list{margin-bottom: 20px;}
+        .border-list{
+            background-color: #fff;
+        }
+        .border-list li{width: 100px;margin: 10px auto;-webkit-box-pack: center;text-align: center;}
+
+
+        body > a {
+            display: none;
+        }
+    </style>
+</head>
+
+<body ontouchstart="">
+<h2 class="title ui-border-b"><a href="index.html">Frozen UI</a> &gt; 表单项</h2>
+<div class="ui-arrowlink title2">要求填写的表格设计</div>
+<div class="ui-form">
+    <form action="#">
+        <div id="parameterFather">
+            <ul class="ui-list ui-border-tb">
+                <li>
+                    <div class="ui-list-info ui-border-t">
+                        <h4>填写标题1</h4>
+                        <div class="ui-form-item-my ui-border-b" >
+                            <input type="text" placeholder="请填写标题" id="question1"/>
+                            <a href="#" class="ui-icon-close">
+                            </a>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div class="ui-list-info ui-border-t">
+                        <div class="ui-form-item ui-border-b">
+                            <label for="#">
+                                内容描述
+                            </label>
+                            <input type="text" placeholder="内容描述" id="questionDescribe1"/>
+                            <a href="#" class="ui-icon-close">
+                            </a>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <div class="ui-btn-wrap-my">
+            <button class="ui-btn-lg" id="addrow" type="button" >
+                增加一行
+            </button>
+        </div>
+        <div class="ui-btn-group ui-btn-group-bottom">
+            <button type="button">
+                上一步
+            </button>
+            <button type="button">
+                预览
+            </button>
+            <button type="button" onclick="sub()">
+                提交
+            </button>
+        </div>
+    </form>
+</div>
+
+<script type="text/javascript">
+    var blockNum = 10;//参数内容最多添加10个
+    var count =1;
+    $(function(){
+        //实现动态添加参数div
+        $('#addrow').click(function () {
+            var parentDom = $("#parameterFather"), oriDom = parentDom.children(":first");
+            // Number count = 0;
+            var clLength = parentDom.children().length;
+            count++;
+            var nowDom;
+            //第一次添加 参数内容
+            nowDom = '<ul class="ui-list ui-border-tb">\n' +
+                    '                <li>\n' +
+                    '                    <div class="ui-list-info ui-border-t">\n' +
+                    '                        <h4>填写标题' + count + '</h4>\n' +
+                    '                        <div class="ui-form-item-my ui-border-b" >\n' +
+                    '                            <input type="text" placeholder="请填写标题" id="question' + count + '">\n' +
+                    '                            <a href="#" class="ui-icon-close">\n' +
+                    '                            </a>\n' +
+                    '                        </div>\n' +
+                    '                    </div>\n' +
+                    '                </li>\n' +
+                    '                <li>\n' +
+                    '                    <div class="ui-list-info ui-border-t">\n' +
+                    '                        <div class="ui-form-item ui-border-b">\n' +
+                    '                            <label for="#">\n' +
+                    '                                内容描述\n' +
+                    '                            </label>\n' +
+                    '                            <input type="text" placeholder="内容描述" id="questionDescribe' + count + '">\n' +
+                    '                            <a href="#" class="ui-icon-close">\n' +
+                    '                            </a>\n' +
+                    '                        </div>\n' +
+                    '                    </div>\n' +
+                    '                </li>\n' +
+                    '           </ul>';
+            parentDom.append(nowDom);
+        });
+    });
+
+    var question;
+    var questionDescribe;
+    function sub() {
+        for (var i=1; i<=count; i++){
+            if (i===1){
+                question = $("#question"+i).val();
+                questionDescribe = $("#questionDescribe"+i).val();
+            }
+            else {
+                question += "&" + $("#question"+i).val();
+                questionDescribe += "&" + $("#questionDescribe"+i).val();
+            }
+        }
+        $.post("addTask",{"question":question,"questionDescribe":questionDescribe},function () {
+            window.location.href='/showItem';
+        })
+    }
+
+</script>
+</body>
+</html>

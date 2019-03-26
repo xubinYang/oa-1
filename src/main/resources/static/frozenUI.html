@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, initial-scale=1.0, user-scalable=no">
+    <meta name="format-detection" content="telephone=no, email=no">
+    <meta name="HandheldFriendly" content="true">
+    <title>FrozenUI Demo</title>
+    <!-- 引入 FrozenUI -->
+    <!--<link rel="stylesheet" href="../static/css/oa.css"/>-->
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <link rel="stylesheet" href="css/frozenui2.css"/>
+    <link rel="stylesheet" href="css/style2.css">
+</head>
+<body>
+
+<div class="ui-row-flex ui-whitespace container">
+
+    <div class="ui-col ui-col-4" >
+        <section class="ui-input-wrap ui-border-t">
+            <div class="ui-input ui-border-radius">
+                <input type="text" name="" value="" placeholder="我也说一句...">
+            </div>
+        </section>
+        <form action="">
+            <div class="ui-form-item ui-form-item-checkbox ui-border-b">
+                <label class="ui-checkbox">
+                    <input type="checkbox">
+                </label>
+                <p>表单中用于多选操作</p>
+            </div>
+            <div class="ui-form-item ui-form-item-checkbox ui-border-b">
+                <label class="ui-checkbox">
+                    <input type="checkbox" checked="">
+                </label>
+                <p>表单中用于多选操作</p>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+<script type="text/javascript">
+    function showAll() {
+        $('#comment').removeClass("ui-nowrap");
+        $('#comment').addClass("ui-br");
+    }
+</script>
+
+</body>
+</html >
